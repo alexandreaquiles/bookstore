@@ -25,7 +25,7 @@ To run the transactor:
 
 ```
 bin/transactor config/dev-transactor.properties 
-``
+```
 
 Installing Maven with [SDKMan](https://sdkman.io/)
 
