@@ -85,4 +85,39 @@
 ; [{:db/id 17592186045419, :book/name "SICP", :book/price 225.25}]
 ; [{:db/id 17592186045421, :book/name "Metamorphosis", :book/price 10.0}]]
 
-;(b.db/delete-db!)
+(def picture-from-the-past (d/db conn))
+; => datomic.db.Db@398c5a7f
+
+(let [joy-book {:book/name  "Joy of Clojure"
+                    :book/price 400.0}
+      applied-book {:book/name "Clojure Applied"
+                 :book/price 450.5}]
+  (b.db/add-books! conn [joy-book applied-book]))
+; :db-before datomic.db.Db, @398c5a7f
+; :db-after, datomic.db.Db @9ee30a36,
+
+
+(def picture-from-now (d/db conn))
+
+(b.db/find-all-books (d/db conn))
+(b.db/find-all-books picture-from-the-past)
+(b.db/find-all-books picture-from-now)
+
+;#inst"2020-07-27T14:57:06.350-00:00"
+;#inst"2020-07-27T14:58:01.150-00:00"
+;#inst"2020-07-27T14:58:32.816-00:00"
+;#inst"2020-07-27T14:58:57.789-00:00"
+;#inst"2020-07-27T14:59:19.631-00:00"
+;#inst"2020-07-27T14:59:40.778-00:00"
+;#inst"2020-07-27T14:59:57.128-00:00"
+
+(b.db/find-all-books (d/as-of (d/db conn)
+                              #inst "2014-05-19T19:12:37.925-00:00"))
+(b.db/find-all-books (d/as-of (d/db conn)
+                              #inst"2020-07-27T14:57:06.350-00:00"))
+(b.db/find-all-books (d/as-of (d/db conn)
+                              #inst"2020-07-27T14:58:57.789-00:00"))
+(b.db/find-all-books (d/db conn))
+
+
+(b.db/delete-db!)
