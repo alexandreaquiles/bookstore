@@ -169,6 +169,7 @@
 ;[_ :book/price ?price]
 (defn find-all-prices-and-names [conn]
   (d/q '[:find ?name ?price
+         :keys :book/name :book/price
          :where [?e :book/name ?name]
                 [?e :book/price ?price]]
        (d/db conn)))
