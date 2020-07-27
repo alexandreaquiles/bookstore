@@ -55,5 +55,27 @@
 
 (b.db/find-entity-ids-by-price conn 1000.0)
 
+(b.db/find-all-prices conn)
+;#{[99.9] [225.25] [10.0]}
+;Clojure / SICP / Metamorphosis
+
+(b.db/find-all-names conn)
+;#{["Programming Clojure"] ["SICP"] ["Clojure for the Brave and True"] ["Metamorphosis"]}
+
+(b.db/find-entity-ids-by-name conn "Programming Clojure")
+
+(b.db/update-book! conn 17592186045425 :book/price 99.9)
+
+(b.db/find-all-prices conn)
+;#{[99.9] [225.25] [10.0]}
+
+(b.db/find-all-price-with-entity-ids conn)
+
+(b.db/find-all-names-with-entity-ids conn)
+
+(b.db/find-all-prices-and-names-with-entity-ids conn)
+
+(b.db/find-all-prices-and-names conn)
+;#{["SICP" 225.25] ["Clojure for the Brave and True" 99.9] ["Programming Clojure" 99.9] ["Metamorphosis" 10.0]}
 
 ;(b.db/delete-db!)

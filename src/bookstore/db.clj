@@ -138,5 +138,40 @@
        (d/db conn)
        price-parameter))
 
+(defn find-all-prices [conn]
+  (d/q '[:find ?price
+         :where [_ :book/price ?price]]
+       (d/db conn)))
+
+(defn find-all-names [conn]
+  (d/q '[:find ?name
+         :where [_ :book/name ?name]]
+       (d/db conn)))
+
+(defn find-all-price-with-entity-ids [conn]
+  (d/q '[:find ?e ?price
+         :where [?e :book/price ?price]]
+       (d/db conn)))
+
+(defn find-all-names-with-entity-ids [conn]
+  (d/q '[:find ?e ?name
+         :where [?e :book/name ?name]]
+       (d/db conn)))
+
+(defn find-all-prices-and-names-with-entity-ids [conn]
+  (d/q '[:find ?e ?name ?price
+         :where [?e :book/name ?name]
+                [?e :book/price ?price]]
+       (d/db conn)))
+
+;this will get a Cross Join
+;[_ :book/name ?name]
+;[_ :book/price ?price]
+(defn find-all-prices-and-names [conn]
+  (d/q '[:find ?name ?price
+         :where [?e :book/name ?name]
+                [?e :book/price ?price]]
+       (d/db conn)))
+
 ; data clause in :where (some thing are "open")
 ; [entity-id attribute value tx-id added?]
