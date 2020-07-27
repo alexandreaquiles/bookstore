@@ -78,7 +78,7 @@
 (b.db/find-all-prices-and-names conn)
 ;#{["SICP" 225.25] ["Clojure for the Brave and True" 99.9] ["Programming Clojure" 99.9] ["Metamorphosis" 10.0]}
 
-(b.db/find-all-books conn)
+(b.db/find-all-books (d/db conn))
 ;=>
 ;[[{:db/id 17592186045425, :book/name "Programming Clojure", :book/price 99.9}]
 ; [{:db/id 17592186045418, :book/name "Clojure for the Brave and True", :book/price 99.9}]
@@ -103,21 +103,11 @@
 (b.db/find-all-books picture-from-the-past)
 (b.db/find-all-books picture-from-now)
 
-;#inst"2020-07-27T14:57:06.350-00:00"
-;#inst"2020-07-27T14:58:01.150-00:00"
-;#inst"2020-07-27T14:58:32.816-00:00"
-;#inst"2020-07-27T14:58:57.789-00:00"
-;#inst"2020-07-27T14:59:19.631-00:00"
-;#inst"2020-07-27T14:59:40.778-00:00"
-;#inst"2020-07-27T14:59:57.128-00:00"
-
 (b.db/find-all-books (d/as-of (d/db conn)
                               #inst "2014-05-19T19:12:37.925-00:00"))
 (b.db/find-all-books (d/as-of (d/db conn)
-                              #inst"2020-07-27T14:57:06.350-00:00"))
+                              #inst"2020-07-27T15:27:06.350-00:00"))
 (b.db/find-all-books (d/as-of (d/db conn)
                               #inst"2020-07-27T14:58:57.789-00:00"))
-(b.db/find-all-books (d/db conn))
 
-
-(b.db/delete-db!)
+;(b.db/delete-db!)
