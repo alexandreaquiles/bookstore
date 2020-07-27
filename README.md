@@ -1,8 +1,8 @@
 # bookstore
 
-# Day 1
+## Day 1
 
-## Installing Datomic
+### Installing Datomic
 
 On-premise installation:
 https://www.datomic.com/on-prem.html 
@@ -42,7 +42,7 @@ bin/maven-install
 
 Alternatives for installing the Peer Library: https://docs.datomic.com/on-prem/integrating-peer-lib.html
 
-## Links
+### Links
 
 Rich quoting Heraclitus: https://www.youtube.com/watch?v=E4RarTAZ2AY&feature=youtu.be&t=1192 
 
@@ -59,4 +59,4 @@ Open source Datomic alternative: https://github.com/juxt/crux
 Datomic Schema: https://docs.datomic.com/on-prem/schema.html 
 
 
-Datalog languege, a subset of Prolog: https://en.wikipedia.org/wiki/Datalog
+Datalog language, a subset of Prolog: https://en.wikipedia.org/wiki/Datalog
