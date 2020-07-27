@@ -174,5 +174,10 @@
                 [?e :book/price ?price]]
        (d/db conn)))
 
+(defn find-all-books [conn]
+  (d/q '[:find (pull ?e [*])
+         :where [?e :book/name ]]
+       (d/db conn)))
+
 ; data clause in :where (some thing are "open")
 ; [entity-id attribute value tx-id added?]

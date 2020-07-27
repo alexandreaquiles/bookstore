@@ -78,4 +78,11 @@
 (b.db/find-all-prices-and-names conn)
 ;#{["SICP" 225.25] ["Clojure for the Brave and True" 99.9] ["Programming Clojure" 99.9] ["Metamorphosis" 10.0]}
 
+(b.db/find-all-books conn)
+;=>
+;[[{:db/id 17592186045425, :book/name "Programming Clojure", :book/price 99.9}]
+; [{:db/id 17592186045418, :book/name "Clojure for the Brave and True", :book/price 99.9}]
+; [{:db/id 17592186045419, :book/name "SICP", :book/price 225.25}]
+; [{:db/id 17592186045421, :book/name "Metamorphosis", :book/price 10.0}]]
+
 ;(b.db/delete-db!)
