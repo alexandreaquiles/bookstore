@@ -60,3 +60,15 @@ Datomic Schema: https://docs.datomic.com/on-prem/schema.html
 
 
 Datalog language, a subset of Prolog: https://en.wikipedia.org/wiki/Datalog
+
+## Day 2
+
+### Links
+
+Docs on the list and map form of Datomic transactions: https://docs.datomic.com/on-prem/transactions.html
+
+Weird Characters in Clojure (like `#inst`): https://clojure.org/guides/weird_characters#tagged_literals
+
+The five common forms of Clojure keywords (via Kazuki): https://blog.jeaye.com/2017/10/31/clojure-keywords/
+
+Datomic Workshop by it's creators: https://docs.datomic.com/on-prem/day-of-datomic.html
