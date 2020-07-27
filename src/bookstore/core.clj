@@ -27,4 +27,33 @@
 
 (b.db/find-all-entity-ids-of-books conn)
 
+(let [kafka-book {:book/name "Metamorphosis"}]
+  (b.db/add-book! conn kafka-book))
+
+; didn't get transacted into datomic
+; :db.error/nil-value Nil is not a legal value
+;(let [stu-book {:book/name "Programming Clojure"
+;                :book/price nil}]
+;  (b.db/add-book! conn stu-book))
+
+(b.db/find-entity-ids-by-name conn "Metamorphosis")
+
+(b.db/update-book! conn 17592186045421 :book/price 10.0)
+;[:db/add entity-id attribute value]
+
+(b.db/find-entity-ids-by-price conn 10.0)
+
+;Promotion!
+(b.db/update-book! conn 17592186045419 :book/price 225.25)
+
+(b.db/find-entity-ids-by-price conn 450.5)
+(b.db/find-entity-ids-by-price conn 225.25)
+
+(let [stu-book {:book/name "Programming Clojure"
+                :book/price 1000.0}]
+  (b.db/add-book! conn stu-book))
+
+(b.db/find-entity-ids-by-price conn 1000.0)
+
+
 ;(b.db/delete-db!)

@@ -102,6 +102,11 @@
 (defn add-books! [conn books]
   (d/transact conn books))
 
+(defn update-book! [conn entity-id attribute value]
+  (d/transact conn [[:db/add entity-id attribute value]]))
+
+;(d/transact conn [[:db/retract 17592186045425 :book/price]])
+
 ; datomic.db.Db@16418ddb (it's some moment for this DB)
 ;(d/db conn)
 
