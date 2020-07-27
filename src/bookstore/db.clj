@@ -105,23 +105,33 @@
 ; datomic.db.Db@16418ddb (it's some moment for this DB)
 ;(d/db conn)
 
-(defn find-sicp [conn]
-   (d/q '[:find ?entity-id
-         :where [?entity-id :book/name "SICP"]] (d/db conn)))
+;(defn find-sicp [conn]
+;   (d/q '[:find ?e
+;         :where [?e :book/name "SICP"]] (d/db conn)))
 
-(defn find-books-that-cost-99.9 [conn]
-  (d/q '[:find ?entity-id
-         :where [?entity-id :book/price 99.9]] (d/db conn)))
-
-; won't work yet
-;(defn find-entities-by-name [conn name]
-;  (d/q '[:find ?entity-id
-;         :where [?entity-id :book/name name]] (d/db conn)))
-
-; won't work yet
-;(defn find-entities-by-price [conn price]
+;(defn find-books-that-cost-99.9 [conn]
 ;  (d/q '[:find ?e
-;         :where [?e :book/price price]] (d/db conn)))
+;         :where [?e :book/price 99.9]] (d/db conn)))
+
+(defn find-all-entity-ids-of-books [conn]
+  (d/q '[:find ?e
+         :in $                                              ; implicit
+         :where [?e :book/price]]
+       (d/db conn)))
+
+(defn find-entity-ids-by-name [conn name-parameter]
+  (d/q '[:find ?entity-id
+         :in $ ?name                                        ; need to pass db ($) explicitly
+         :where [?entity-id :book/name ?name]]
+       (d/db conn)
+       name-parameter))
+
+(defn find-entity-ids-by-price [conn price-parameter]
+  (d/q '[:find ?e
+         :in $ ?price
+         :where [?e :book/price ?price]]
+       (d/db conn)
+       price-parameter))
 
 ; data clause in :where (some thing are "open")
 ; [entity-id attribute value tx-id added?]

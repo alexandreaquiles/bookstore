@@ -17,8 +17,14 @@
                  :book/price 450.5}]
   (b.db/add-books! conn [clojure-book sicp-book]))
 
-(b.db/find-sicp conn)
+(b.db/find-entity-ids-by-name conn "SICP")
+(b.db/find-entity-ids-by-name conn "Clojure for the Brave and True")
+(b.db/find-entity-ids-by-name conn "Book that doesn't exist")
 
-(b.db/find-books-that-cost-99.9 conn)
+(b.db/find-entity-ids-by-price conn 99.9)
+(b.db/find-entity-ids-by-price conn 450.5)
+(b.db/find-entity-ids-by-price conn 123.4)
 
-(b.db/delete-db!)
+(b.db/find-all-entity-ids-of-books conn)
+
+;(b.db/delete-db!)
