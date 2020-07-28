@@ -84,7 +84,11 @@
              {:db/ident :book/price
               :db/valueType :db.type/double
               :db/cardinality :db.cardinality/one
-              :db/doc "The price of the book"}])
+              :db/doc "The price of the book"}
+             {:db/ident :book/categories
+              :db/valueType :db.type/string
+              :db/cardinality :db.cardinality/many
+              :db/doc "The categories of the book"}])
 
 (defn create-schema! [conn]
   (d/transact conn schema))
@@ -185,6 +189,12 @@
          :where [?e :book/price ?price]
                 [(>= ?price ?min-price)]]
        db minimum-price))
+
+(defn find-all-books-by-category [db searched-category]
+  (d/q '[:find (pull ?e [*])
+         :in $ ?category
+         :where [?e :book/categories ?category]]
+       db searched-category))
 
 ;(defn find-all-books-that-cost-more-than [db minimum-price]
 ;  (d/q '[:find ?e ?name ?price

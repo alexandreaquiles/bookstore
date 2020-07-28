@@ -114,4 +114,40 @@
 
 (b.db/find-all-books-that-cost-more-than (d/db conn) 200.0)
 
+(b.db/create-schema! conn)
+
+(let [whys-book {:book/name "Why's Poignant Guide to Ruby"
+                 :book/price 100.0
+                 :book/categories ["technical" "ruby"]}]
+  (b.db/add-books! conn [whys-book]))
+
+(b.db/find-all-books (d/db conn))
+
+;won't work
+;Value [\"technical\" \"clojure\"] is not a valid :string for attribute :book/categories
+;(b.db/update-book!
+;  conn 17592186045425 :book/categories ["technical" "clojure"])
+
+(b.db/update-book! conn 17592186045425 :book/categories "technical")
+(b.db/update-book! conn 17592186045425 :book/categories "clojure")
+
+(b.db/update-book! conn 17592186045428 :book/categories "technical")
+(b.db/update-book! conn 17592186045428 :book/categories "clojure")
+
+(b.db/update-book! conn 17592186045429 :book/categories "technical")
+(b.db/update-book! conn 17592186045429 :book/categories "clojure")
+
+(b.db/update-book! conn 17592186045418 :book/categories "technical")
+(b.db/update-book! conn 17592186045418 :book/categories "clojure")
+
+(b.db/update-book! conn 17592186045419 :book/categories "technical")
+(b.db/update-book! conn 17592186045419 :book/categories "scheme")
+
+(b.db/update-book! conn 17592186045421 :book/categories "non-technical")
+
+(b.db/find-all-books (d/db conn))
+
+(b.db/find-all-books-by-category (d/db conn) "clojure")
+(b.db/find-all-books-by-category (d/db conn) "non-technical")
+
 ;(b.db/delete-db!)
