@@ -179,5 +179,12 @@
          :where [?e :book/name ]]
        db))
 
+(defn find-all-books-that-cost-more-than [db minimum-price]
+  (d/q '[:find (pull ?e [*])
+         :in $ ?min-price
+         :where [?e :book/price ?price]
+                [(>= ?price ?min-price)]]
+       db minimum-price))
+
 ; data clause in :where (some thing are "open")
 ; [entity-id attribute value tx-id added?]

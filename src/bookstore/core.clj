@@ -106,8 +106,12 @@
 (b.db/find-all-books (d/as-of (d/db conn)
                               #inst "2014-05-19T19:12:37.925-00:00"))
 (b.db/find-all-books (d/as-of (d/db conn)
-                              #inst"2020-07-27T15:27:06.350-00:00"))
+                              #inst"2020-07-28T12:08:46.350-00:00"))
 (b.db/find-all-books (d/as-of (d/db conn)
                               #inst"2020-07-27T14:58:57.789-00:00"))
+(b.db/find-all-books (d/as-of (d/db conn)
+                              #inst "2024-05-19T19:12:37.925-00:00"))
+
+(b.db/find-all-books-that-cost-more-than (d/db conn) 200.0)
 
 ;(b.db/delete-db!)
