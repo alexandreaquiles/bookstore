@@ -1,7 +1,8 @@
 (ns bookstore.core
   (:use clojure.pprint)
   (:require [datomic.api :as d]
-            [bookstore.db :as b.db]))
+            [bookstore.db :as b.db]
+            [bookstore.domain :as b.domain]))
 
 (def conn (b.db/open-connection!))
 ;(println conn)
@@ -151,5 +152,13 @@
 (b.db/find-all-books-by-category (d/db conn) "non-technical")
 
 (b.db/find-book-by-id (d/db conn) 17592186045419)
+
+(b.db/add-book! conn
+                (b.domain/new-book "Computer Networking" 650.5))
+
+(b.db/add-book! conn
+                (b.domain/new-book (b.domain/uuid) "Fluent Python" 150.5))
+
+(b.db/find-all-books (d/db conn))
 
 ;(b.db/delete-db!)

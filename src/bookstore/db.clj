@@ -77,7 +77,12 @@
 
 (def db-uri "datomic:dev://localhost:4334/bookstore")
 
-(def schema [{:db/ident :book/name
+(def schema [{:db/ident :book/id
+              :db/valueType :db.type/uuid
+              :db/cardinality :db.cardinality/one
+              :db/doc "The UUID of the book"
+              :db/unique :db.unique/identity}
+             {:db/ident :book/name
               :db/valueType :db.type/string
               :db/cardinality :db.cardinality/one
               :db/doc "The name of the book"}
