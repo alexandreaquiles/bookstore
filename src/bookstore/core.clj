@@ -174,4 +174,33 @@
 
 (b.db/find-all-publishers (d/db conn))
 
+; book -> publisher
+; 17592186045418 -> 17592186045458
+
+(b.db/update-book! conn 17592186045418 :book/publisher 17592186045458)
+
+(b.db/add-book! conn (b.domain/new-book "Getting Clojure" 125.95))
+
+;#uuid"b1f4cf1b-d0d5-4faf-b7e1-ea2c2fbc5708" -> #uuid"27b43fd6-e446-4dcc-9635-37cdbf7785c2"
+
+;won't work
+;Unable to resolve entity: b1f4cf1b-d0d5-4faf-b7e1-ea2c2fbc5708 in datom [#uuid \"b1f4cf1b-d0d5-4faf-b7e1-ea2c2fbc5708\" :book/publisher #uuid \"27b43fd6-e446-4dcc-9635-37cdbf7785c2\"]
+;(b.db/update-book! conn
+;                   #uuid"b1f4cf1b-d0d5-4faf-b7e1-ea2c2fbc5708"
+;                   :book/publisher
+;                   #uuid"27b43fd6-e446-4dcc-9635-37cdbf7785c2")
+
+; needs a Lookup Ref
+(b.db/update-book! conn
+                   [:book/id #uuid"b1f4cf1b-d0d5-4faf-b7e1-ea2c2fbc5708"]
+                   :book/publisher
+                   [:publisher/id #uuid"27b43fd6-e446-4dcc-9635-37cdbf7785c2"])
+
+
+(b.db/add-book! conn (b.domain/new-book "Land of Lisp" 165.80))
+;#uuid"436f262f-56fb-4a86-9401-4b612eaf330a"
+
+(d/transact conn [{:book/id        #uuid"436f262f-56fb-4a86-9401-4b612eaf330a"
+                   :book/publisher [:publisher/id #uuid"fb8f16d9-7024-4b65-a095-9fdccf7e787a"]}])
+
 ;(b.db/delete-db!)

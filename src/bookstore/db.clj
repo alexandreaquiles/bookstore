@@ -96,6 +96,10 @@
               :db/valueType   :db.type/string
               :db/cardinality :db.cardinality/many
               :db/doc         "The categories of the book"}
+             {:db/ident :book/publisher
+              :db/valueType :db.type/ref
+              :db/cardinality :db.cardinality/one
+              :db/doc "The publisher of the book"}
 
              ; a publisher
              {:db/ident :publisher/id
@@ -129,6 +133,18 @@
   (d/transact conn [[:db/add entity-id attribute value]]))
 
 ;(d/transact conn [[:db/retract 17592186045425 :book/price]])
+
+; won't work
+; transact with the list form (I need the lookup ref)
+;(d/transact conn [[:db/add
+;                   #uuid"b1f4cf1b-d0d5-4faf-b7e1-ea2c2fbc5708"
+;                   :book/name
+;                   "Getting Clojure"]])
+
+;doesn't need the lookup ref for the map form
+;(d/transact conn [{:book/id #uuid"b1f4cf1b-d0d5-4faf-b7e1-ea2c2fbc5708"
+;                   :book/name "Getting Clojure"}])
+
 
 ; datomic.db.Db@16418ddb (it's some moment for this DB)
 ;(d/db conn)
