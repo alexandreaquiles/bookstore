@@ -77,23 +77,34 @@
 
 (def db-uri "datomic:dev://localhost:4334/bookstore")
 
-(def schema [{:db/ident :book/id
+(def schema [
+             ; a book
+             {:db/ident       :book/id
+              :db/valueType   :db.type/uuid
+              :db/cardinality :db.cardinality/one
+              :db/doc         "The UUID of the book"
+              :db/unique      :db.unique/identity}
+             {:db/ident       :book/name
+              :db/valueType   :db.type/string
+              :db/cardinality :db.cardinality/one
+              :db/doc         "The name of the book"}
+             {:db/ident       :book/price
+              :db/valueType   :db.type/double
+              :db/cardinality :db.cardinality/one
+              :db/doc         "The price of the book"}
+             {:db/ident       :book/categories
+              :db/valueType   :db.type/string
+              :db/cardinality :db.cardinality/many
+              :db/doc         "The categories of the book"}
+
+             ; a publisher
+             {:db/ident :publisher/id
               :db/valueType :db.type/uuid
               :db/cardinality :db.cardinality/one
-              :db/doc "The UUID of the book"
               :db/unique :db.unique/identity}
-             {:db/ident :book/name
+             {:db/ident :publisher/name
               :db/valueType :db.type/string
-              :db/cardinality :db.cardinality/one
-              :db/doc "The name of the book"}
-             {:db/ident :book/price
-              :db/valueType :db.type/double
-              :db/cardinality :db.cardinality/one
-              :db/doc "The price of the book"}
-             {:db/ident :book/categories
-              :db/valueType :db.type/string
-              :db/cardinality :db.cardinality/many
-              :db/doc "The categories of the book"}])
+              :db/cardinality :db.cardinality/one}])
 
 (defn create-schema! [conn]
   (d/transact conn schema))
@@ -107,6 +118,9 @@
 
 (defn add-book! [conn book]
   (d/transact conn [book]))
+
+(defn add-publisher! [conn publisher]
+  (d/transact conn [publisher]))
 
 (defn add-books! [conn books]
   (d/transact conn books))
@@ -203,6 +217,11 @@
 
 (defn find-book-by-id [db book-id]
   (d/pull db '[*] book-id))
+
+(defn find-all-publishers [db]
+  (d/q '[:find (pull ?e [*])
+         :where [?e :publisher/id]]
+       db))
 
 ;(defn find-all-books-that-cost-more-than [db minimum-price]
 ;  (d/q '[:find ?e ?name ?price

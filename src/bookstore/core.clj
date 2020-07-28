@@ -166,4 +166,12 @@
 
 (b.db/find-all-books (d/db conn))
 
+(b.db/add-publisher! conn (b.domain/new-publisher "PragProg"))
+(b.db/add-publisher! conn (b.domain/new-publisher "Manning"))
+(b.db/add-publisher! conn (b.domain/new-publisher "O'Reilly"))
+(b.db/add-publisher! conn (b.domain/new-publisher "No Starch"))
+(b.db/add-publisher! conn (b.domain/new-publisher "MIT Press"))
+
+(b.db/find-all-publishers (d/db conn))
+
 ;(b.db/delete-db!)

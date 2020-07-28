@@ -14,3 +14,8 @@
     :book/name  name
     :book/price price}))
 
+(defn new-publisher
+  ([name] (new-publisher (uuid) name))
+  ([uuid name]
+   {:publisher/id uuid
+    :publisher/name name}))
