@@ -72,3 +72,33 @@ Weird Characters in Clojure (like `#inst`): https://clojure.org/guides/weird_cha
 The five common forms of Clojure keywords (via Kazuki): https://blog.jeaye.com/2017/10/31/clojure-keywords/
 
 Datomic Workshop by it's creators: https://docs.datomic.com/on-prem/day-of-datomic.html
+
+## Day 3
+
+### Links
+
+Datomic Courses (in pt_BR): https://www.alura.com.br/formacao-datomic
+
+Intro to DDD: https://www.amazon.com.br/Domain-Driven-Design-Distilled-Vaughn-Vernon/dp/0134434420
+Books on DDD: https://dddcommunity.org/books/
+
+Domain Events: https://microservices.io/patterns/data/domain-event.html
+
+Event Storming (the workshop): https://en.wikipedia.org/wiki/Event_storming
+Event Storming (the workshop): https://www.eventstorming.com/
+
+Event Sourcing (the technique): https://microservices.io/patterns/data/event-sourcing.html
+Event Sourcing (the technique): https://martinfowler.com/eaaDev/EventSourcing.html
+
+Datomic Console: https://docs.datomic.com/on-prem/console.html
+
+Java UUIDs: https://docs.oracle.com/javase/7/docs/api/java/util/UUID.html
+Examples of using UUIDs in Java: https://www.baeldung.com/java-uuid
+
+Identity and Uniqueness in Datomic: https://docs.datomic.com/on-prem/identity.html
+
+Clojure books from The Pragmatic Bookshelf: https://pragprog.com/search/?q=clojure
+
+Why's Poignant Guide to Ruby: https://poignant.guide/
+Land of Lisp (a Common Lisp book): http://landoflisp.com/
+SICP (code in Scheme): https://mitpress.mit.edu/sites/default/files/sicp/index.html
