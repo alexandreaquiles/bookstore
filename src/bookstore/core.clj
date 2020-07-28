@@ -159,6 +159,11 @@
 (b.db/add-book! conn
                 (b.domain/new-book (b.domain/uuid) "Fluent Python" 150.5))
 
+; a db.unique/identity represents a identity
+(b.db/add-book! conn
+                (b.domain/new-book #uuid"dcf879f7-323e-41f2-be46-8cb723e0d87e"
+                                   "TDD by Example" 50.5))
+
 (b.db/find-all-books (d/db conn))
 
 ;(b.db/delete-db!)
