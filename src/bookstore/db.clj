@@ -186,5 +186,24 @@
                 [(>= ?price ?min-price)]]
        db minimum-price))
 
+;(defn find-all-books-that-cost-more-than [db minimum-price]
+;  (d/q '[:find ?e ?name ?price
+;         :in $ ?min-price
+;         :keys :db/id :book/name :book/price
+;         :where [?e :book/price ?price]
+;         [(>= ?price ?min-price)]
+;         [?e :book/name ?name]]
+;       db minimum-price))
+
+; buy more books from the publisher
+; query price > 200 & quantity < 5
+
+; 10k books
+;   - 5k have prices > 200
+;   - just 10 have quantity < 5
+
+; -> filtering 5k and then getting 10 => only 3 books
+; -> filtering 10 and then getting cost > 200 => only 3 books
+
 ; data clause in :where (some thing are "open")
 ; [entity-id attribute value tx-id added?]
