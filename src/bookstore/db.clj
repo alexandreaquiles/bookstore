@@ -196,6 +196,9 @@
          :where [?e :book/categories ?category]]
        db searched-category))
 
+(defn find-book-by-id [db book-id]
+  (d/pull db '[*] book-id))
+
 ;(defn find-all-books-that-cost-more-than [db minimum-price]
 ;  (d/q '[:find ?e ?name ?price
 ;         :in $ ?min-price

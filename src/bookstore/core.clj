@@ -150,4 +150,6 @@
 (b.db/find-all-books-by-category (d/db conn) "clojure")
 (b.db/find-all-books-by-category (d/db conn) "non-technical")
 
+(b.db/find-book-by-id (d/db conn) 17592186045419)
+
 ;(b.db/delete-db!)
